@@ -1,0 +1,26 @@
+<extend name="Base/common"/>
+
+<block name="header">
+    <header class="jumbotron subhead" id="overview">
+         <h3>每天一练，提升就在不经意间</h3>
+    </header>
+</block>
+
+<block name="side">
+<!-- 左侧 nav
+================================================== -->
+    <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+            {:W('Category/lists', array(1, true))}
+        </ul>
+    </div>
+</block>
+
+<block name="body">
+    <div>
+        <a href="{:U('Papers/showpapers')}">题库</a>
+    </div>
+    <div>
+        列表
+    </div>
+</block>

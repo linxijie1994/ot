@@ -1,0 +1,179 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>新增试题</h2>
+    </div>
+    
+    <div class="data-table table-striped">
+        <form action="{:U('Papers/add')}" method="post">
+            <span>选择添加的类型:<div class="error_info"></div>
+            <select class="sel_t" name="type">
+                <option value="0">试题类型</option>
+                <option value="1">填空题</option>
+                <option value="2">判断题</option>
+                <option value="3">选择题</option>
+                <option value="4">操作题</option>
+            </select>   
+            <!--填空题-->
+            <table class="fi_q">
+                <thead>
+                    <tr >
+                        <th style="text-align:center;">题目</th>
+                        <th style="text-align:center;">参考答案</th>
+                        <th style="text-align:center;">难度</th>
+                        <th style="text-align:center;">备注</th>
+                        <th style="text-align:center;">隶属</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input name="fi_question" type="text" title="请用#代替答案内容。如：床前#光" /></td>
+                        <td><input name="fi_answer" type="text" /></td>
+                        <td>
+                             <select name="fi_level">
+                                 <option value="1">简单</option>
+                                 <option value="2">一般</option>
+                                 <option value="3">困难</option>
+                                 <option value="4">超纲</option>
+                             </select>
+                         </td>
+                        <td><input name="fi_remark" type="text" /></td>
+                        <td><input name="fi_unit" type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--判断题-->
+            <table class="rw_q">
+                <thead>
+                    <tr >
+                        <th style="text-align:center;">题目</th>
+                        <th style="text-align:center;">参考答案</th>
+                        <th style="text-align:center;">难度</th>
+                        <th style="text-align:center;">备注</th>
+                        <th style="text-align:center;">隶属</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input name="rw_question" type="text" /></td>
+                        <td>
+                            <select name="rw_answer">
+                                <option value="R">正确</option>
+                                <option value="W">错误</option>
+                            </select>
+                        </td>
+                        <td>
+                             <select name="rw_level">
+                                 <option value="1">简单</option>
+                                 <option value="2">一般</option>
+                                 <option value="3">困难</option>
+                                 <option value="4">超纲</option>
+                             </select>
+                         </td>
+                        <td><input name="rw_remark" type="text" /></td>
+                        <td><input name="rw_unit" type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="choice" >
+                <label class="item-label">题目：</label>
+                <div  class="controls">
+                    <input name="ch_question" type="text" >
+                </div>
+                <label class="item-label">答案：</label>
+                <div class="controls">
+                    <input  name="ch_answer" type="text" >
+                </div>
+                <label class="item-label">备选答案：</label>
+                <div class="controls">
+                    <ol>
+                        <li><input name="ch1" type="text" ></li>
+                        <li><input name="ch2" type="text" ></li>
+                        <li><input name="ch3" type="text" ></li>
+                        <li><input name="ch4" type="text" ></li>
+                    </ol>
+                </div>
+                <label class="item-label">难度：</label>
+                <div  class="controls">
+                     <select name="ch_level">
+                         <option value="1">简单</option>
+                         <option value="2">一般</option>
+                         <option value="3">困难</option>
+                         <option value="4">超纲</option>
+                     </select>
+                </div>
+                <label class="item-label">备注：</label>
+                <div class="controls">
+                    <input name="ch_remark" type="text" >
+                </div>
+                <label class="item-label">隶属：</label>
+                <div class="controls">
+                    <input name="ch_unit" type="text" >
+                </div>            
+            </div>
+            <!--操作题-->
+            <div class="operation_q">
+                <label class="item-label">题目：</label>
+                <div class="controls">
+                     <input type="text" >
+                </div>
+                <label class="item-label">描述：</label>
+                <div class="controls">
+                     <input type="text" >
+                </div>
+                <label class="item-label">难度：</label>
+                <div class="controls">
+                     <select>
+                         <option value="1">简单</option>
+                         <option value="2">一般</option>
+                         <option value="3">困难</option>
+                         <option value="4">超纲</option>
+                     </select>
+                </div>
+                <label class="item-label">隶属：</label>
+                <div class="controls">
+                     <input type="text" >
+                </div>
+                <label class="item-label">答案：</label>
+                <div class="controls">
+                     <textarea>
+                         
+                     </textarea>
+                </div>
+            </div>
+            <div class="add_btn">
+                <button class="btn" type="submit">提 交</button>
+                <button class="btn" type="reset">取 消</button>
+            </div>
+        </form>
+    </div>
+</block>
+
+<block name="script">
+    <style type="text/css">
+        td{
+            text-align:center;
+        }
+        .add_btn{
+            display: none;
+        }
+        .rw_q{
+            display: none;
+        }
+        .fi_q{
+            display: none;
+        }
+        .choice{
+            display: none;
+        }
+        .operation_q{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/common/papers/papers.js"></script>
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U('User/index')}');
+    </script>
+</block>

@@ -1,0 +1,63 @@
+<extend name="Base/common"/>
+
+<block name="header">
+    <header class="jumbotron subhead" id="overview">
+         <h4>试题列表</h4>
+    </header>
+
+<!-- 左侧 nav
+================================================== -->
+    
+</block>
+
+<block name="body">
+  <div>
+      <form>
+          <span>一、填空题</span>
+          <volist name="fi_q" id="fi_v">
+            <div>
+              <p>
+                {$key+1}.<php>echo str_replace('#','<input type="text" name="answer[]" />',$fi_v['question'])</php>
+              </p>
+            </div>
+          </volist>
+          <span>二、判断题</span>
+          <volist name="rw_q" id="rw">
+            <p>
+            {$key+1}.{$rw.question}----------<input type="text" placeholder="r=正确，w=错误"  name="rw[]">
+            </p>
+          </volist>
+          <span>三、单选题</span>
+          <volist name="c1_q" id="c1">
+              <p>
+                {$key+1}.{$c1.question}
+              </p>
+                <php>
+                 $answer1 = get_ch1($c1['answer'],$c1['ch1'],$c1['ch2'],$c1['ch3'],$c1['ch4']);
+                 </php>
+                   <input type="radio" name="answer_{$key}" />A.{$answer1.0}
+                   <input type="radio" name="answer_{$key}" />B.{$answer1.1}
+                   <input type="radio" name="answer_{$key}" />C.{$answer1.2}
+                   <input type="radio" name="answer_{$key}" />D.{$answer1.3}
+          </volist>
+          <p>
+            <span>四、多选题</span>
+            <volist name="c2_q" id="c2">
+                <p>
+                  {$key+1}.{$c2.question}
+                </p>
+                  <php>
+                   $answer2 = get_ch2($c2['answer'],$c2['ch1'],$c2['ch2'],$c2['ch3'],$c2['ch4']);
+                   </php>
+                     <input type="checkbox" name="answer_{$key}" />A.{$answer2.0}
+                     <input type="checkbox" name="answer_{$key}" />B.{$answer2.1}
+                     <input type="checkbox" name="answer_{$key}" />C.{$answer2.2}
+                     <input type="checkbox" name="answer_{$key}" />D.{$answer2.3}
+                     <input type="checkbox" name="answer_{$key}" />E.{$answer2.4}
+            </volist>
+            </p>
+            <span>五、操作题</span>
+            <p>未开放</p>
+      </form>
+  </div>
+</block>
